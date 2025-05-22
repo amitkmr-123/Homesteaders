@@ -6,7 +6,7 @@
 }
 
 @mixin tabletvert {
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     @content;
   }
 }
@@ -18,7 +18,18 @@
 }
 
 @mixin tabletMin {
-  @media (min-width: 1024px) {
+  @media (min-width: 1025px) {
+    @content;
+  }
+}
+@mixin tabletMidmin {
+  @media (min-width: 992px) {
+    @content;
+  }
+}
+
+@mixin tabletMid {
+  @media (max-width: 991px) {
     @content;
   }
 }
@@ -28,7 +39,11 @@
     @content;
   }
 }
-
+@mixin navbreakMin {
+  @media (min-width: 1281px) {
+    @content;
+  }
+}
 @mixin laptop {
   @media (max-width: 1440px) {
     @content;
@@ -48,15 +63,13 @@
 }
 
 @mixin ie {
-
-  @media all and (-ms-high-contrast: none),
-  (-ms-high-contrast: active) {
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
     @content;
   }
 }
 
 @mixin safari {
-  @media not all and (min-resolution:.001dpcm) {
+  @media not all and (min-resolution: 0.001dpcm) {
     @supports (-webkit-appearance: none) {
       @content;
     }
