@@ -1,0 +1,39 @@
+<div class="socialWrp">
+  <div class="innerSocial">
+    {% if module.include_title %}
+    <div class="socialTitle">
+      {{ module.title }}
+    </div>
+    {% endif %}
+    <div class="cmSocial">
+      {% for item in module.social_share %} 
+       {% if item.select_icon_type == "icon" || item.select_icon_type == "img" %}
+      <a href="{{ item.link }}" target="blank">
+        {% if item.select_icon_type == "icon" %}
+        {% icon
+            name="{{ item.select_icon.name }}"
+            style="{{ item.select_icon.type }}"
+            unicode="{{ item.select_icon.unicode }}"
+            icon_set="{{ item.select_icon.icon_set }}"
+          %}
+        {% elif item.select_icon_type == "img" %}
+        <img src="{{ item.select_image.src }}" alt="{{ item.select_image.alt }}" >
+        {% endif %}
+      </a>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+{% require_css %}
+
+<style>
+  .socialWrp .cmSocial a{
+    background: {{ module.module_settings.icon_background_color.rgba }};
+  }
+</style>
+
+{% end_require_css %}
+

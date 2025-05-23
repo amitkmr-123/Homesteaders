@@ -1,0 +1,31 @@
+@import "../../css/_module-imports";
+
+.socialWrp {
+  margin: 10px 0;
+  .cmSocial {
+    a {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      svg {
+        height: 30px;
+        width: 30px;
+        fill: inherit;
+      }
+      img {
+        object-fit: cover;
+        height: 30px;
+        width: 30px;
+      }
+      o & > * {
+        line-height: 0;
+      }
+    }
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+}
