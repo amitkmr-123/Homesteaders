@@ -1,16 +1,574 @@
-[{
-  "id": "665e3202-ab27-e914-a6ec-953790f8fe95",
-  "name": "blog_menu",
-  "label": "Blog Menu",
-  "required": false,
-  "locked": true,
-  "type": "menu",
-  "default": 37302690329
+[ {
+  "id" : "0d9e1be3-2665-cb36-dde2-356c4d5aa8d1",
+  "name" : "search_section",
+  "label" : "Search Section",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "input",
+    "name" : "input",
+    "label" : "Search input field",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "input.field_label",
+      "name" : "field_label",
+      "label" : "Label text",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "display_width" : null
+    }, {
+      "id" : "input.placeholder",
+      "name" : "placeholder",
+      "label" : "Placeholder text",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "Search"
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "placeholder" : "Search"
+    }
+  }, {
+    "id" : "button",
+    "name" : "button",
+    "label" : "Button",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "button.icon",
+      "name" : "icon",
+      "label" : "Icon",
+      "required" : false,
+      "locked" : false,
+      "icon_set" : "fontawesome-5.0.10",
+      "type" : "icon",
+      "display_width" : null,
+      "default" : {
+        "name" : "search",
+        "unicode" : "f002",
+        "type" : "SOLID"
+      }
+    }, {
+      "id" : "button.button_label",
+      "name" : "button_label",
+      "label" : "Button text",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "display_width" : null
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "icon" : {
+        "name" : "search",
+        "unicode" : "f002",
+        "type" : "SOLID"
+      }
+    }
+  }, {
+    "id" : "results",
+    "name" : "results",
+    "label" : "Results",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "results.user_custom_search_results_template",
+      "name" : "use_custom_search_results_template",
+      "label" : "Use custom search results page",
+      "inline_help_text" : "Turn this setting on to use a custom search results page instead of the default global search results page.",
+      "required" : false,
+      "locked" : false,
+      "display" : "toggle",
+      "type" : "boolean",
+      "display_width" : null,
+      "default" : false
+    }, {
+      "id" : "results.path_id",
+      "name" : "path_id",
+      "label" : "Search results page",
+      "inline_help_text" : "This is where people will go when they click to search their search term. Make sure to choose a page that contains the search results module.",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "results.user_custom_search_results_template",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "page",
+      "display_width" : null
+    }, {
+      "id" : "results.content_types",
+      "name" : "content_types",
+      "label" : "Search results include",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "results.content_types.website_pages",
+        "name" : "website_pages",
+        "label" : "Website pages",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : null,
+          "controlling_value_regex" : null,
+          "property" : null,
+          "operator" : "NOT_EMPTY",
+          "access" : {
+            "operator" : "HAS_ALL",
+            "scopes" : [ "sitepages-access" ]
+          }
+        },
+        "display" : "checkbox",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : true
+      }, {
+        "id" : "results.content_types.landing_pages",
+        "name" : "landing_pages",
+        "label" : "Landing pages",
+        "required" : false,
+        "locked" : false,
+        "display" : "checkbox",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      }, {
+        "id" : "results.content_types.blog_posts",
+        "name" : "blog_posts",
+        "label" : "Blog posts",
+        "required" : false,
+        "locked" : false,
+        "display" : "checkbox",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : true
+      }, {
+        "id" : "results.content_types.knowledge_articles",
+        "name" : "knowledge_articles",
+        "label" : "Knowledge articles",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : null,
+          "controlling_value_regex" : null,
+          "property" : null,
+          "operator" : null,
+          "access" : {
+            "operator" : "HAS_ALL",
+            "scopes" : [ "service-knowledge-access" ]
+          }
+        },
+        "display" : "checkbox",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      }, {
+        "id" : "results.content_types.case_studies",
+        "name" : "case_studies",
+        "label" : "Case studies",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : null,
+          "controlling_value_regex" : null,
+          "property" : null,
+          "operator" : null,
+          "access" : {
+            "operator" : "HAS_ALL",
+            "scopes" : [ "case-study-access" ]
+          }
+        },
+        "display" : "checkbox",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "website_pages" : true,
+        "landing_pages" : false,
+        "blog_posts" : true,
+        "knowledge_articles" : false,
+        "case_studies" : false
+      }
+    }, {
+      "id" : "results.group_id",
+      "name" : "group_id",
+      "label" : "Group ID",
+      "required" : false,
+      "locked" : true,
+      "display" : "text",
+      "step" : 1,
+      "type" : "number",
+      "display_width" : null
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "use_custom_search_results_template" : false,
+      "content_types" : {
+        "website_pages" : true,
+        "landing_pages" : false,
+        "blog_posts" : true,
+        "knowledge_articles" : false,
+        "case_studies" : false
+      }
+    }
+  }, {
+    "id" : "default_text",
+    "name" : "default_text",
+    "label" : "Default text",
+    "required" : false,
+    "locked" : true,
+    "children" : [ {
+      "id" : "default_text.autosuggest_results_message",
+      "name" : "autosuggest_results_message",
+      "label" : "Autosuggest results message",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "Results for “[[search_term]]”"
+    }, {
+      "id" : "default_text.autosuggest_no_results_message",
+      "name" : "autosuggest_no_results_message",
+      "label" : "Autosuggest no results message",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "There are no autosuggest results for “[[search_term]]”"
+    }, {
+      "id" : "default_text.sr_empty_search_field_message",
+      "name" : "sr_empty_search_field_message",
+      "label" : "Screen reader empty search field message",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "There are no suggestions because the search field is empty."
+    }, {
+      "id" : "default_text.sr_autosuggest_results_message",
+      "name" : "sr_autosuggest_results_message",
+      "label" : "Screen reader autosuggest results message",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "There are currently [[number_of_results]] auto-suggested results for [[search_term]]. Navigate to the results list by pressing the down arrow key, or press return to search for all results."
+    }, {
+      "id" : "default_text.sr_search_field_aria_label",
+      "name" : "sr_search_field_aria_label",
+      "label" : "Screen reader search field aria-label",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "This is a search field with an auto-suggest feature attached."
+    }, {
+      "id" : "default_text.sr_search_button_aria_label",
+      "name" : "sr_search_button_aria_label",
+      "label" : "Screen reader search button aria-label",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "Search"
+    }, {
+      "id" : "default_text.as_example_search_results",
+      "name" : "as_example_search_results",
+      "label" : "Auto suggest results for example search term",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "Results for “example search term”"
+    }, {
+      "id" : "default_text.as_example_line_1",
+      "name" : "as_example_line_1",
+      "label" : "Auto suggest line 1 for example search term",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "This is where suggested results appear as your visitor types their search term"
+    }, {
+      "id" : "default_text.as_example_line_2",
+      "name" : "as_example_line_2",
+      "label" : "Auto suggest line 2 for example search term",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "Here's another suggested search result"
+    }, {
+      "id" : "default_text.as_example_line_3",
+      "name" : "as_example_line_3",
+      "label" : "Auto suggest line 3 for example search term",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "Configure the type of content that appears in your search results using the “search results include” option"
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "autosuggest_results_message" : "Results for “[[search_term]]”",
+      "autosuggest_no_results_message" : "There are no autosuggest results for “[[search_term]]”",
+      "sr_empty_search_field_message" : "There are no suggestions because the search field is empty.",
+      "sr_autosuggest_results_message" : "There are currently [[number_of_results]] auto-suggested results for [[search_term]]. Navigate to the results list by pressing the down arrow key, or press return to search for all results.",
+      "sr_search_field_aria_label" : "This is a search field with an auto-suggest feature attached.",
+      "sr_search_button_aria_label" : "Search",
+      "as_example_search_results" : "Results for “example search term”",
+      "as_example_line_1" : "This is where suggested results appear as your visitor types their search term",
+      "as_example_line_2" : "Here's another suggested search result",
+      "as_example_line_3" : "Configure the type of content that appears in your search results using the “search results include” option"
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "input" : {
+      "placeholder" : "Search"
+    },
+    "button" : {
+      "icon" : {
+        "name" : "search",
+        "unicode" : "f002",
+        "type" : "SOLID"
+      }
+    },
+    "results" : {
+      "use_custom_search_results_template" : false,
+      "content_types" : {
+        "website_pages" : true,
+        "landing_pages" : false,
+        "blog_posts" : true,
+        "knowledge_articles" : false,
+        "case_studies" : false
+      }
+    },
+    "default_text" : {
+      "autosuggest_results_message" : "Results for “[[search_term]]”",
+      "autosuggest_no_results_message" : "There are no autosuggest results for “[[search_term]]”",
+      "sr_empty_search_field_message" : "There are no suggestions because the search field is empty.",
+      "sr_autosuggest_results_message" : "There are currently [[number_of_results]] auto-suggested results for [[search_term]]. Navigate to the results list by pressing the down arrow key, or press return to search for all results.",
+      "sr_search_field_aria_label" : "This is a search field with an auto-suggest feature attached.",
+      "sr_search_button_aria_label" : "Search",
+      "as_example_search_results" : "Results for “example search term”",
+      "as_example_line_1" : "This is where suggested results appear as your visitor types their search term",
+      "as_example_line_2" : "Here's another suggested search result",
+      "as_example_line_3" : "Configure the type of content that appears in your search results using the “search results include” option"
+    }
+  }
 }, {
-  "id": "13a57d0f-fe03-f733-b11b-ff2c630e8ce8",
-  "name": "blog_resources_by_topic",
-  "label": "Blog Resources by Topic",
-  "required": false,
-  "locked": true,
-  "type": "hubdbtable"
-}]
+  "id" : "6fea91a4-cac4-b7c2-e65c-601ac5f3eec4",
+  "name" : "featured_section",
+  "label" : "Featured Section",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "baf5574d-affc-8961-6088-81af9b7956bf",
+    "name" : "select_tag",
+    "label" : "Select Tag",
+    "required" : false,
+    "locked" : false,
+    "tag_value" : "NAME",
+    "type" : "tag",
+    "display_width" : null
+  }, {
+    "id" : "0609ee26-098e-cad0-efa9-b5a9b91710c5",
+    "name" : "read_more_text",
+    "label" : "Read More Text",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Learn More"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "read_more_text" : "Learn More"
+  }
+}, {
+  "id" : "1d2fc1a8-885c-8e3e-f018-d4433aee4f68",
+  "name" : "blog_listings",
+  "label" : "Blog Listings",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "892444dc-a4b2-04d1-0b04-6a2e9fc93f49",
+    "name" : "title",
+    "label" : "Title",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Browse our blog archives."
+  }, {
+    "id" : "7bd3e80b-90b8-473e-c30a-6c6c15bf3693",
+    "name" : "featured_image",
+    "label" : "Featured Image",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : true
+  }, {
+    "id" : "c2b186ae-f149-da5e-23e9-ac1c491abe25",
+    "name" : "tag",
+    "label" : "Tag",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : true
+  }, {
+    "id" : "6ce86cbc-2ad7-ec60-b3bf-017f49d5c82e",
+    "name" : "read_minute",
+    "label" : "Read Minute",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : true
+  }, {
+    "id" : "76c00849-24ad-bd9c-04f3-27afdb3c54bb",
+    "name" : "post_title",
+    "label" : "Post Title",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : true
+  }, {
+    "id" : "845d2430-6497-596a-dd0f-b77cef1bf014",
+    "name" : "read_more",
+    "label" : "Read More",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : true
+  }, {
+    "id" : "d7957657-2d0b-6e22-820c-acc9f5c741fb",
+    "name" : "read_more_text",
+    "label" : "Read More Text",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "blog_listings.read_more",
+      "controlling_value_regex" : null,
+      "property" : null,
+      "operator" : null,
+      "access" : null
+    },
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Learn More"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "title" : "Browse our blog archives.",
+    "featured_image" : true,
+    "tag" : true,
+    "read_minute" : true,
+    "post_title" : true,
+    "read_more" : true,
+    "read_more_text" : "Learn More"
+  }
+} ]
