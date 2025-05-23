@@ -21,11 +21,43 @@
       </div>
     </div>
     <div class="page-center btmmWrpp">
+      <div class="flx topWrpp">
+        <div class="leftWrpp"></div>
+        <div class="rightWrpp">
+          <div class="title">
+            <div class="date">
+              JANUARY 1ST, 2020 | Time to read
+            </div>
+            <div class="blogTitle">
+              {{ content.name }}
+            </div>
+            {% if content.blog_post_author.avatar or content.blog_post_author.display_name %}
+            <div class="authorWrpp">
+              <div class="flx">
+                {% if content.blog_post_author.avatar %}
+                <div class="left">
+                  <img alt="{{ content.blog_post_author.display_name }}" src="{{ content.blog_post_author.avatar }}">
+                </div>
+                {% endif %}
+                {% if content.blog_post_author.display_name %}
+                <div class="right">
+                  Written by: <a href="{{ blog_author_url(group.id, content.blog_post_author.slug) }}" rel="author">
+                  {{ content.blog_post_author.display_name }}
+                  </a>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+            {% endif %}
+
+          </div>
+        </div>
+      </div>
       <div class="btmCntt"> 
         <div class="innerCnt">
           <div class="flx">
             <div class="leftWrpp">
-              <!--               <div class="innerLeft">
+              <div class="innerLeft">
                 <span>Share this</span>
                 <ul>
                   <li id="linkedin">
@@ -35,36 +67,9 @@
                     <a href="http://www.facebook.com/share.php?u={{ content.absolute_url }}" onclick="window.open('http://www.facebook.com/share.php?u={{ content.absolute_url }}', 'newwindow', 'width=530,height=600,toolbar=no,directories=no,status=no,menubar=no,scrollbars=yes,copyhistory=no,resizable=yes'); return false;" target="_self"></a>
                   </li>
                 </ul>
-              </div> -->
+              </div>
             </div>
             <div class="rightWrpp">
-              <div class="title">
-                <div class="date">
-                  JANUARY 1ST, 2020 | Time to read
-                </div>
-                <div class="blogTitle">
-                  {{ content.name }}
-                </div>
-                {% if content.blog_post_author.avatar or content.blog_post_author.display_name %}
-                <div class="authorWrpp">
-                  <div class="flx">
-                    {% if content.blog_post_author.avatar %}
-                    <div class="left">
-                      <img alt="{{ content.blog_post_author.display_name }}" src="{{ content.blog_post_author.avatar }}">
-                    </div>
-                    {% endif %}
-                    {% if content.blog_post_author.display_name %}
-                    <div class="right">
-                      Written by: <a href="{{ blog_author_url(group.id, content.blog_post_author.slug) }}" rel="author">
-                      {{ content.blog_post_author.display_name }}
-                      </a>
-                    </div>
-                    {% endif %}
-                  </div>
-                </div>
-                {% endif %}
-
-              </div>
               <div class="flexx">
                 <div class="leftColWrp">
                   <div class="postImg">
@@ -156,25 +161,25 @@
     display: block;
     cursor: pointer;
   }
-  .cmpost .btmCntt {
+  .cmpost .topWrpp {
     margin-top: 66px;
   }
-  .cmpost .btmCntt .innerCnt .flx {
+  .cmpost .flx {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     column-gap: 41px;
   }
-  .cmpost .btmCntt .innerCnt .flx .leftWrpp {
+  .cmpost .flx .leftWrpp {
     width: 44px;
   }
-  .cmpost .btmCntt .innerCnt .flx .rightWrpp {
+  .cmpost .flx .rightWrpp {
     flex: 1;
   }
   .cmpost .page-center.btmmWrpp {
     max-width: 1272px;
   }
-  .cmpost .btmCntt .innerCnt .flx .rightWrpp .title .date {
+  .cmpost .flx .rightWrpp .title .date {
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
@@ -182,7 +187,7 @@
     letter-spacing: 0.15em;
     color: #004990;
   }
-  .cmpost .btmCntt .innerCnt .flx .rightWrpp .title .blogTitle {
+  .cmpost .flx .rightWrpp .title .blogTitle {
     font-style: normal;
     font-weight: 500;
     font-size: 75px;
@@ -190,16 +195,16 @@
     margin-bottom: 36px;
     color: #004990;
   }
-  .cmpost .btmCntt .innerCnt .flx .rightWrpp .authorWrpp .left {
+  .cmpost .flx .rightWrpp .authorWrpp .left {
     width: 70px;
     height: 70px;
     border-radius: 50%;
     overflow: hidden;
   }
-  .cmpost .btmCntt .innerCnt .flx .rightWrpp .authorWrpp .flx {
+  .cmpost  .flx .rightWrpp .authorWrpp .flx {
     gap: 20px;
   }
-  .cmpost .btmCntt .innerCnt .flx .rightWrpp .authorWrpp .right {
+  .cmpost  .flx .rightWrpp .authorWrpp .right {
     font-style: normal;
     font-weight: 300;
     font-size: 20px;
@@ -207,7 +212,7 @@
     letter-spacing: 0.01em;
     color: #282F3E;
   }
-  .cmpost .btmCntt .innerCnt .flx .rightWrpp .authorWrpp .right a {
+  .cmpost  .flx .rightWrpp .authorWrpp .right a {
     font-style: normal;
     font-weight: 500;
     font-size: 22px;
@@ -281,6 +286,18 @@
   }
   .cmpost .btmCntt {
     margin-bottom: 30px;
+  }
+  .cmpost .btmCntt .flx {
+    align-items: flex-start;
+  }
+  .cmpost .flx .leftWrpp {
+    width: 44px;
+    position: sticky;
+    top: 0;
+    padding-top: 40px;
+  }
+  .cmpost .flx .leftWrpp .innerLeft {
+    margin-top: 40px;
   }
   body.hs-content-id-190521815695.hs-blog-post.hs-content-path-sample-blog-homesteaders-u4m-sample-post-1.hs-content-name-sample-post-1.hs-blog-name-sample-blog-homesteaders-u4m.hs-blog-id-190533811036.window-loaded header.header {
     display: none;
