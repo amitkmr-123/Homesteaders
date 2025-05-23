@@ -1,0 +1,18 @@
+{
+  "global" : false,
+  "content_types" : [ "LANDING_PAGE", "SITE_PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "host_template_types" : [ "PAGE", "BLOG_POST", "BLOG_LISTING" ],
+  "module_id" : 190541804960,
+  "js_assets" : [ {
+    "autoload" : true,
+    "path" : "../../js/splide.js",
+    "name" : "splide.js"
+  }, {
+    "autoload" : true,
+    "path" : "../../js/magnific-popup.js",
+    "name" : "magnific-popup.js"
+  } ],
+  "label" : "Image Gallery",
+  "icon" : "https://8292614.fs1.hubspotusercontent-na1.net/hubfs/8292614/4.svg",
+  "is_available_for_new_content" : true
+}

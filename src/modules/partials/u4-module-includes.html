@@ -35,11 +35,11 @@ require_css (get_asset_url('../../css/styles.css')) }} {% endif %}
      </div> 
     {% endif %}
     <div class="page-center {% if module.module_overrides.enable_overrides %} {% if module.module_overrides.inner_container_spacing_group.add_corner_radius %}Radius{% else %} noRadius{% endif %} {{ module.module_settings.theme }} {{ module.module_overrides.container_size }}" {% if module.module_overrides.container_size == "custom" %} style="max-width:{{ module.module_overrides.custom_container_size }}rem {% endif %} 			{% endif %}" >
-      <div class="innerContainer " {% if module.module_overrides.inner_container_spacing_group.add_corner_radius %}style="border-radius:{{ module.module_overrides.inner_container_spacing_group.corner_radius_settings.left_top_radius }}px {{ module.module_overrides.inner_container_spacing_group.corner_radius_settings.right_top_radius }}px {{ module.module_overrides.inner_container_spacing_group.corner_radius_settings.right_bottom_radius }}px {{ module.module_overrides.inner_container_spacing_group.corner_radius_settings.left_bottom_radius }}px" {% endif %}>
+      <div class="innerContainer " style="{% if module.module_overrides.inner_container_spacing_group.add_corner_radius %}border-radius:{{ module.module_overrides.inner_container_spacing_group.corner_radius_settings.left_top_radius }}px {{ module.module_overrides.inner_container_spacing_group.corner_radius_settings.right_top_radius }}px {{ module.module_overrides.inner_container_spacing_group.corner_radius_settings.right_bottom_radius }}px {{ module.module_overrides.inner_container_spacing_group.corner_radius_settings.left_bottom_radius }}px{% endif %} " >
 
         {% if module.module_overrides.enable_overrides %}
         {% if module.module_overrides.inner_container_spacing_group.select_background_color  %}
-        <div class="bg_overlay bg_color {{ module.module_overrides.inner_container_spacing_group.select_background_color }}"></div>
+        <div class="bg_overlay bg_color {{ module.module_overrides.inner_container_spacing_group.select_background_color }}" {% if module.module_overrides.inner_container_spacing_group.select_background_color == 'custom' %}style="background-color:{{ module.module_overrides.inner_container_spacing_group.select_custom_color.rgba }}"{% endif %}></div>
         {% endif %} 
         {% endif %}
 

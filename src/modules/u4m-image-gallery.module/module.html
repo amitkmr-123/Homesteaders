@@ -1,0 +1,68 @@
+{% set moduleName = 'u4m-image-gal' %}
+{% include "../partials/u4-module-includes.html" %}
+
+{{ macros.introGroup(module.intro_content, module.module_settings) }} 
+
+  <div class="galWrap">
+    <div class="galItems splide">
+      <div class="splide__track" id="splide-track">
+        <div class="splide__list" >
+          {% for item in module.gallery %}
+          <div class="galItem splide__slide">
+            {% if item.select_image.src %}
+            <a href="{{ item.select_image.src }}" class="mfp-image image-popup-vertical-fit" title="{{ item.caption }}">
+              <img src="{{ item.select_image.src }}" alt="{{ item.select_image.alt }}">
+            </a>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+</div>
+</div>
+</section>
+ {% if module.module_settings.include_corner_radius %} 
+{% require_css %}
+<style>
+  .{{ name }}.u4m-image-gal .galItem img,
+  .mfp-img{
+      border-radius:{{ module.module_settings.corner_radius_settings.left_top_radius }}px {{ module.module_settings.corner_radius_settings.right_top_radius }}px {{ module.module_settings.corner_radius_settings.right_bottom_radius }}px {{ module.module_settings.corner_radius_settings.left_bottom_radius }}px
+  }
+</style> 
+{% end_require_css %}
+{% endif %}
+
+
+{% require_js %}
+<script>
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const splide = new Splide(".u4m-image-gal.{{ name }} .galItems.splide", {
+                              type: "slide",
+                              drag: "free", 
+                              perPage: 3, 
+                              perMove: 1,
+                              arrows: true,
+                              autoplay:true,
+                              gap: '45rem',
+                              pagination: true,
+                              focus  : 0,
+  omitEnd: true,
+                              breakpoints: {
+                              500: {
+                              perPage: 1,
+                              },
+                            768: {
+                            perPage: 2,
+                            },
+  },
+  });
+  splide.mount();
+  });
+
+</script>
+{% end_require_js %}
