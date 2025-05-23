@@ -1,0 +1,187 @@
+@import "../../css/_module-imports";
+
+
+.header {
+    padding: 21rem 0;
+
+    .page-center {
+        max-width: 1340rem;
+    }
+
+    .cntHolder {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        column-gap: 20rem;
+        row-gap: 27rem;
+    }
+}
+
+
+
+.triggerWrap,
+.cmLightLogo {
+    display: none;
+}
+
+@include navbreak {
+    .triggerWrap {
+        display: flex;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        z-index: 4;
+        width: 40rem;
+        height: 40rem;
+        justify-content: center;
+        align-items: center;
+
+        .triggerItem {
+            display: block;
+            height: 3px;
+            left: 50%;
+            margin-left: 0;
+            position: absolute;
+            width: 28px;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            background-color: $action1;
+
+            &.cmFirst {
+                top: calc(50% + 8rem);
+                transition: top .5s .4s ease, transform .4s ease;
+            }
+
+            &.cmSecond {
+                transition: opacity .3s .4s ease;
+            }
+
+            &.cmThird {
+                top: calc(50% - 8rem);
+                transition: top .5s .4s ease, transform .4s ease;
+            }
+
+        }
+
+        &.navActive {
+            .triggerItem {
+                &.cmFirst {
+                    top: 0px;
+                    transform: rotate(45deg);
+                    transition: top .4s ease, transform .5s .4s ease;
+                }
+
+                &.cmSecond {
+                    opacity: 0;
+                }
+
+                &.cmThird {
+                    top: 0px;
+                    transform: rotate(-45deg);
+                    transition: top .4s ease, transform .5s .4s ease;
+                }
+            }
+
+        }
+    }
+}
+
+
+
+// ------
+
+.cmMenuWrap {
+    .cmInnerWrap {
+        display: flex;
+        align-items: center;
+        gap: 36rem;
+        position: relative;
+
+        .mainNav {
+            padding: 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap;
+            column-gap: 34rem;
+            margin: 0;
+
+            .items {
+                margin: 0;
+                font-size: 15rem;
+                font-weight: 500;
+                line-height: 1.5;
+                letter-spacing: 0.3rem;
+
+                &.hasChildMenu {
+                    .btmBorder {
+                        position: relative;
+
+                        &:before {
+                            position: absolute;
+                            content: "";
+                            z-index: 1;
+                            width: 100%;
+                            top: 100%;
+                            border-bottom: 3rem solid $lightblue;
+                            opacity: 0;
+                            visibility: hidden;
+                            transition: all 0.3s ease;
+                            padding-top: 24rem;
+                        }
+                    }
+                }
+
+                .bottomMenu {
+                    bottom: auto;
+                    left: 0;
+                    position: absolute;
+                    top: calc(100% + 14rem);
+                    width: 100%;
+                    z-index: 99;
+                    background: $white;
+                    box-shadow: 0px 0px 12px rgba(0, 73, 144, 0.15);
+                    opacity: 0;
+                    visibility: hidden;
+                    transition: all 0.3s ease;
+
+
+                    .bottomInner {
+                        display: flex;
+                        flex-wrap: nowrap;
+                    }
+                }
+
+                &:hover {
+
+                    a>.btmBorder,
+                    >.btmBorder {
+                        &:before {
+                            opacity: 1;
+                            visibility: visible
+                        }
+                    }
+
+                    >.bottomMenu {
+                        opacity: 1;
+                        visibility: visible
+                    }
+                }
+            }
+        }
+
+        .btnWrapper {
+            .btn_item {
+                a {
+                    margin-bottom: 0;
+                    margin-top: 0;
+                    font-size: 18rem;
+                    padding: 8rem 18rem 10rem;
+                    letter-spacing: .36rem;
+                    min-width: 139rem;
+                }
+            }
+        }
+    }
+}

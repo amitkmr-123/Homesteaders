@@ -1,19 +1,19 @@
 [ {
   "id" : "9adfdd9c-707c-ce62-28ba-43943ec5f3e9",
   "name" : "menu_group",
-  "label" : "Menu Group",
+  "label" : "Main Menu Group",
   "required" : false,
   "locked" : false,
   "occurrence" : {
     "min" : null,
     "max" : null,
     "sorting_label_field" : "696147e3-7afc-8703-a69e-2d0ccb4f53f0",
-    "default" : null
+    "default" : 5
   },
   "children" : [ {
     "id" : "696147e3-7afc-8703-a69e-2d0ccb4f53f0",
-    "name" : "text",
-    "label" : "Text",
+    "name" : "menu",
+    "label" : "Menu",
     "required" : false,
     "locked" : false,
     "validation_regex" : "",
@@ -21,7 +21,7 @@
     "show_emoji_picker" : false,
     "type" : "text",
     "display_width" : null,
-    "default" : "Menu 1"
+    "default" : "Sample Menu"
   }, {
     "id" : "3561e213-9d26-3b7f-c5a4-f29aa7b40637",
     "name" : "include_link",
@@ -31,7 +31,7 @@
     "display" : "checkbox",
     "type" : "boolean",
     "display_width" : null,
-    "default" : false
+    "default" : true
   }, {
     "id" : "68b82188-e91c-75bd-b19e-1c973bc0a0da",
     "name" : "link",
@@ -68,13 +68,19 @@
     "display" : "checkbox",
     "type" : "boolean",
     "display_width" : null,
-    "default" : false
+    "default" : true
   }, {
     "id" : "a00afaad-bf8c-6a69-c440-3e3aba1e42a6",
     "name" : "child_menu_group",
     "label" : "Child Menu Group",
     "required" : false,
     "locked" : false,
+    "occurrence" : {
+      "min" : null,
+      "max" : 3,
+      "sorting_label_field" : null,
+      "default" : 3
+    },
     "visibility" : {
       "controlling_field" : null,
       "controlling_field_path" : "menu_group.include_child_menu",
@@ -84,23 +90,73 @@
       "access" : null
     },
     "children" : [ {
-      "id" : "82aca453-e1e8-2c02-97db-ec3b882ce896",
-      "name" : "left_column",
-      "label" : "Left Column",
+      "id" : "dadfdd73-95b2-ee2d-97a0-7f9df997492f",
+      "name" : "top_title",
+      "label" : "Top Title",
       "required" : false,
       "locked" : false,
-      "occurrence" : {
-        "min" : null,
-        "max" : null,
-        "sorting_label_field" : "105adb4a-edf4-58c7-09f0-931b89fbf103",
-        "default" : null
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "OVERVIEW"
+    }, {
+      "id" : "217e06eb-c10f-cac6-c12c-4fb0b09055f5",
+      "name" : "select_menu_type",
+      "label" : "Select Content Type",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "card", "Card" ], [ "menu", "Menu" ], [ "hubdb", "Hubdb" ], [ "blog", "Blog" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "card"
+    }, {
+      "id" : "4a0dc35b-e573-c173-c638-0c8fdf238caa",
+      "name" : "card_group",
+      "label" : "Card Group",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "menu_group.child_menu_group.select_menu_type",
+        "controlling_value_regex" : "card",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
       },
       "children" : [ {
-        "id" : "fc9fbeda-993b-82dc-9d6f-cd49235daf00",
+        "id" : "e00c88f4-cb53-d85d-881d-318c386baa18",
+        "name" : "select_icon_type",
+        "label" : "Select Icon Type",
+        "required" : false,
+        "locked" : false,
+        "display" : "select",
+        "choices" : [ [ "img", "Image" ], [ "icon", "Icon" ] ],
+        "multiple" : false,
+        "reordering_enabled" : true,
+        "preset" : null,
+        "type" : "choice",
+        "display_width" : null,
+        "default" : "img"
+      }, {
+        "id" : "505da083-3b66-ca08-4f10-dcd0ca15f7db",
         "name" : "image",
         "label" : "Image",
         "required" : false,
         "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "menu_group.child_menu_group.card_group.select_icon_type",
+          "controlling_value_regex" : "img",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
         "responsive" : true,
         "resizable" : false,
         "show_loading" : false,
@@ -108,12 +164,34 @@
         "display_width" : null,
         "default" : {
           "size_type" : "auto",
-          "src" : "",
-          "alt" : null,
-          "loading" : "lazy"
+          "src" : "https://453356.fs1.hubspotusercontent-na1.net/hubfs/453356/Homesteaders-u4m/Images/hand%20with%20tree.png",
+          "alt" : "hand with tree",
+          "loading" : "lazy",
+          "width" : 61,
+          "height" : 62,
+          "max_width" : 61,
+          "max_height" : 62
         }
       }, {
-        "id" : "105adb4a-edf4-58c7-09f0-931b89fbf103",
+        "id" : "d666379e-3511-cb3f-1420-2cf350cb4395",
+        "name" : "icon",
+        "label" : "Icon",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "menu_group.child_menu_group.card_group.select_icon_type",
+          "controlling_value_regex" : "icon",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "icon_set" : "fontawesome-6.4.2",
+        "type" : "icon",
+        "display_width" : null,
+        "default" : { }
+      }, {
+        "id" : "9f65a088-af4a-7af0-6288-0b02dad84834",
         "name" : "title",
         "label" : "Title",
         "required" : false,
@@ -122,28 +200,219 @@
         "allow_new_line" : false,
         "show_emoji_picker" : false,
         "type" : "text",
-        "display_width" : null
+        "display_width" : null,
+        "default" : "Title"
+      }, {
+        "id" : "02b8de01-854f-01fd-5ec6-d324797f6245",
+        "name" : "description",
+        "label" : "Description",
+        "required" : false,
+        "locked" : false,
+        "type" : "richtext",
+        "display_width" : null,
+        "default" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent lib ero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum.</p>"
+      }, {
+        "id" : "7dc31052-c20f-22b9-f343-b6bc5e3e2be7",
+        "name" : "include_button",
+        "label" : "Include Button",
+        "required" : false,
+        "locked" : false,
+        "display" : "checkbox",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : true
+      }, {
+        "id" : "6508f9ac-64f9-2e31-52a4-33dbcf5d9804",
+        "name" : "button_group",
+        "label" : "Button Group",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "menu_group.child_menu_group.card_group.include_button",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "children" : [ {
+          "id" : "2e89a424-924f-647e-d655-8c6eb0f6f422",
+          "name" : "button_type",
+          "label" : "Button Type",
+          "required" : false,
+          "locked" : false,
+          "display" : "select",
+          "choices" : [ [ "std", "Standard" ], [ "cta", "Call to Action" ] ],
+          "multiple" : false,
+          "reordering_enabled" : true,
+          "preset" : null,
+          "type" : "choice",
+          "display_width" : null,
+          "default" : "std"
+        }, {
+          "id" : "36301c36-9f77-cb5c-58ae-bc02bf15ed84",
+          "name" : "button_style",
+          "label" : "Button Style",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : null,
+            "controlling_field_path" : "menu_group.child_menu_group.card_group.button_group.button_type",
+            "controlling_value_regex" : "std",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          },
+          "display" : "select",
+          "choices" : [ [ "hs-button", "Primary" ], [ "hs-sec-btn", "Secondary" ], [ "hs-arrow-btn", "Simple Button" ] ],
+          "multiple" : false,
+          "reordering_enabled" : true,
+          "preset" : null,
+          "type" : "choice",
+          "display_width" : null,
+          "default" : "hs-arrow-btn"
+        }, {
+          "id" : "adb8c1ae-eb67-b193-41e5-7f3040575365",
+          "name" : "button_text",
+          "label" : "Button Text",
+          "required" : false,
+          "locked" : false,
+          "validation_regex" : "",
+          "visibility" : {
+            "controlling_field" : null,
+            "controlling_field_path" : "menu_group.child_menu_group.card_group.button_group.button_type",
+            "controlling_value_regex" : "std",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          },
+          "allow_new_line" : false,
+          "show_emoji_picker" : false,
+          "type" : "text",
+          "display_width" : null,
+          "default" : "Learn More"
+        }, {
+          "id" : "c99d4f78-d730-16cd-8b91-5a8931eeff90",
+          "name" : "link",
+          "label" : "Link",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : null,
+            "controlling_field_path" : "menu_group.child_menu_group.card_group.button_group.button_type",
+            "controlling_value_regex" : "std",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          },
+          "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG", "CALL_TO_ACTION", "PHONE_NUMBER", "WHATSAPP_NUMBER", "PAYMENT" ],
+          "show_advanced_rel_options" : false,
+          "type" : "link",
+          "display_width" : null,
+          "default" : {
+            "url" : {
+              "content_id" : null,
+              "type" : "EXTERNAL",
+              "href" : ""
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          }
+        }, {
+          "id" : "9352d45a-7a2d-0fdb-1550-b7422d3f6321",
+          "name" : "cta",
+          "label" : "CTA",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : null,
+            "controlling_field_path" : "menu_group.child_menu_group.card_group.button_group.button_type",
+            "controlling_value_regex" : "cta",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          },
+          "type" : "cta",
+          "display_width" : null
+        } ],
+        "tab" : "CONTENT",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : {
+          "button_type" : "std",
+          "button_style" : "hs-arrow-btn",
+          "button_text" : "Learn More",
+          "link" : {
+            "url" : {
+              "content_id" : null,
+              "type" : "EXTERNAL",
+              "href" : ""
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          }
+        }
       } ],
       "tab" : "CONTENT",
       "expanded" : false,
       "group_occurrence_meta" : null,
       "type" : "group",
       "display_width" : null,
-      "default" : [ ]
+      "default" : {
+        "select_icon_type" : "img",
+        "image" : {
+          "size_type" : "auto",
+          "src" : "https://453356.fs1.hubspotusercontent-na1.net/hubfs/453356/Homesteaders-u4m/Images/hand%20with%20tree.png",
+          "alt" : "hand with tree",
+          "loading" : "lazy",
+          "width" : 61,
+          "height" : 62,
+          "max_width" : 61,
+          "max_height" : 62
+        },
+        "icon" : { },
+        "title" : "Title",
+        "description" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent lib ero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum.</p>",
+        "include_button" : true,
+        "button_group" : {
+          "button_type" : "std",
+          "button_style" : "hs-arrow-btn",
+          "button_text" : "Learn More",
+          "link" : {
+            "url" : {
+              "content_id" : null,
+              "type" : "EXTERNAL",
+              "href" : ""
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          }
+        }
+      }
     }, {
-      "id" : "00ada556-5c0b-78e4-e192-286bcf95e987",
-      "name" : "middle_column",
-      "label" : "Middle Column",
+      "id" : "51eb9a38-e2a2-74d9-0adc-4124774adc6e",
+      "name" : "menu_group",
+      "label" : "Menu Group",
       "required" : false,
       "locked" : false,
       "occurrence" : {
         "min" : null,
         "max" : null,
-        "sorting_label_field" : "c3ac9f52-77d1-e5a1-8d84-204d64e90d9c",
-        "default" : null
+        "sorting_label_field" : null,
+        "default" : 3
+      },
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "menu_group.child_menu_group.select_menu_type",
+        "controlling_value_regex" : "menu",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
       },
       "children" : [ {
-        "id" : "c3ac9f52-77d1-e5a1-8d84-204d64e90d9c",
+        "id" : "c07d7630-b53d-0e82-74ab-bf88a28196b5",
         "name" : "title",
         "label" : "Title",
         "required" : false,
@@ -152,9 +421,10 @@
         "allow_new_line" : false,
         "show_emoji_picker" : false,
         "type" : "text",
-        "display_width" : null
+        "display_width" : null,
+        "default" : "Title"
       }, {
-        "id" : "2da34a22-07fa-b6fc-6efe-7e167f775bbb",
+        "id" : "a71a1845-acd2-1773-1d9f-5e22fe37f0af",
         "name" : "description",
         "label" : "Description",
         "required" : false,
@@ -163,9 +433,10 @@
         "allow_new_line" : false,
         "show_emoji_picker" : false,
         "type" : "text",
-        "display_width" : null
+        "display_width" : null,
+        "default" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       }, {
-        "id" : "fb3fb729-b271-f79b-5bf7-4d9a4eef9895",
+        "id" : "af5d7f15-49e8-7092-9ff1-c809c0bcf1ab",
         "name" : "include_link",
         "label" : "Include Link",
         "required" : false,
@@ -173,22 +444,22 @@
         "display" : "checkbox",
         "type" : "boolean",
         "display_width" : null,
-        "default" : false
+        "default" : true
       }, {
-        "id" : "5f9fa8d4-6813-6f56-2cee-3d64a2de1853",
+        "id" : "f05d4808-dfdc-f92c-8e6b-140a8e1bb897",
         "name" : "link",
         "label" : "Link",
         "required" : false,
         "locked" : false,
         "visibility" : {
           "controlling_field" : null,
-          "controlling_field_path" : "menu_group.child_menu_group.middle_column.include_link",
+          "controlling_field_path" : "menu_group.child_menu_group.menu_group.include_link",
           "controlling_value_regex" : "true",
           "property" : null,
           "operator" : "EQUAL",
           "access" : null
         },
-        "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG", "CALL_TO_ACTION", "PHONE_NUMBER", "PAYMENT" ],
+        "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG", "CALL_TO_ACTION", "PHONE_NUMBER", "WHATSAPP_NUMBER", "PAYMENT" ],
         "show_advanced_rel_options" : false,
         "type" : "link",
         "display_width" : null,
@@ -207,56 +478,62 @@
       "group_occurrence_meta" : null,
       "type" : "group",
       "display_width" : null,
-      "default" : [ ]
-    }, {
-      "id" : "4ee2a861-f14c-e8b4-fb30-da83f1a71d9b",
-      "name" : "right_column",
-      "label" : "Right Column",
-      "required" : false,
-      "locked" : false,
-      "occurrence" : {
-        "min" : null,
-        "max" : null,
-        "sorting_label_field" : "bbe7a71b-a437-a80d-9ab6-2420f8e5fd82",
-        "default" : null
-      },
-      "children" : [ {
-        "id" : "dfd41302-fc3a-61df-7e68-541cdcd08262",
-        "name" : "include_image",
-        "label" : "Include Image",
-        "required" : false,
-        "locked" : false,
-        "display" : "checkbox",
-        "type" : "boolean",
-        "display_width" : null,
-        "default" : false
-      }, {
-        "id" : "ea1014bf-7cb6-e6dd-e633-dad1f0db32cf",
-        "name" : "image_field",
-        "label" : "Image",
-        "required" : false,
-        "locked" : false,
-        "visibility" : {
-          "controlling_field" : null,
-          "controlling_field_path" : "menu_group.child_menu_group.right_column.include_image",
-          "controlling_value_regex" : "true",
-          "property" : null,
-          "operator" : "EQUAL",
-          "access" : null
-        },
-        "responsive" : true,
-        "resizable" : false,
-        "show_loading" : false,
-        "type" : "image",
-        "display_width" : null,
-        "default" : {
-          "size_type" : "auto",
-          "src" : "",
-          "alt" : null,
-          "loading" : "lazy"
+      "default" : [ {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
         }
       }, {
-        "id" : "bbe7a71b-a437-a80d-9ab6-2420f8e5fd82",
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ]
+    }, {
+      "id" : "2fe1f807-ae22-aa86-cb24-412945f94cf4",
+      "name" : "hubdb_group",
+      "label" : "Hubdb Group",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "menu_group.child_menu_group.select_menu_type",
+        "controlling_value_regex" : "hubdb",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "children" : [ {
+        "id" : "5b31d301-b724-2187-21f2-50a5a6611c23",
         "name" : "title",
         "label" : "Title",
         "required" : false,
@@ -266,75 +543,1588 @@
         "show_emoji_picker" : false,
         "type" : "text",
         "display_width" : null
-      }, {
-        "id" : "c42d38df-cf46-74be-a838-265edd7bd917",
-        "name" : "card_settings",
-        "label" : "Card Settings",
-        "required" : false,
-        "locked" : false,
-        "children" : [ {
-          "id" : "8d2c97ea-72ba-e2bb-0929-fdefc0012339",
-          "name" : "background_color",
-          "label" : "Background Color",
-          "required" : false,
-          "locked" : false,
-          "type" : "color",
-          "display_width" : null,
-          "default" : {
-            "color" : null,
-            "opacity" : null
-          }
-        }, {
-          "id" : "74316459-d581-0f6f-9bdf-2e390034bc80",
-          "name" : "title_color",
-          "label" : "Title Color",
-          "required" : false,
-          "locked" : false,
-          "type" : "color",
-          "display_width" : null,
-          "default" : {
-            "color" : null,
-            "opacity" : null
-          }
-        } ],
-        "tab" : "CONTENT",
-        "expanded" : false,
-        "group_occurrence_meta" : null,
-        "type" : "group",
-        "display_width" : null,
-        "default" : {
-          "background_color" : {
-            "color" : null,
-            "opacity" : null
-          },
-          "title_color" : {
-            "color" : null,
-            "opacity" : null
-          }
-        }
       } ],
       "tab" : "CONTENT",
       "expanded" : false,
       "group_occurrence_meta" : null,
       "type" : "group",
       "display_width" : null,
-      "default" : [ ]
+      "default" : { }
     } ],
     "tab" : "CONTENT",
     "expanded" : false,
     "group_occurrence_meta" : null,
     "type" : "group",
     "display_width" : null,
-    "default" : {
-      "left_column" : [ ],
-      "middle_column" : [ ],
-      "right_column" : [ ]
-    }
+    "default" : [ {
+      "top_title" : "OVERVIEW",
+      "select_menu_type" : "card",
+      "card_group" : {
+        "select_icon_type" : "img",
+        "image" : {
+          "size_type" : "auto",
+          "src" : "https://453356.fs1.hubspotusercontent-na1.net/hubfs/453356/Homesteaders-u4m/Images/hand%20with%20tree.png",
+          "alt" : "hand with tree",
+          "loading" : "lazy",
+          "width" : 61,
+          "height" : 62,
+          "max_width" : 61,
+          "max_height" : 62
+        },
+        "icon" : { },
+        "title" : "Title",
+        "description" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent lib ero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum.</p>",
+        "include_button" : true,
+        "button_group" : {
+          "button_type" : "std",
+          "button_style" : "hs-arrow-btn",
+          "button_text" : "Learn More",
+          "link" : {
+            "url" : {
+              "content_id" : null,
+              "type" : "EXTERNAL",
+              "href" : ""
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          }
+        }
+      },
+      "menu_group" : [ {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ],
+      "hubdb_group" : { }
+    }, {
+      "top_title" : "OVERVIEW",
+      "select_menu_type" : "card",
+      "card_group" : {
+        "select_icon_type" : "img",
+        "image" : {
+          "size_type" : "auto",
+          "src" : "https://453356.fs1.hubspotusercontent-na1.net/hubfs/453356/Homesteaders-u4m/Images/hand%20with%20tree.png",
+          "alt" : "hand with tree",
+          "loading" : "lazy",
+          "width" : 61,
+          "height" : 62,
+          "max_width" : 61,
+          "max_height" : 62
+        },
+        "icon" : { },
+        "title" : "Title",
+        "description" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent lib ero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum.</p>",
+        "include_button" : true,
+        "button_group" : {
+          "button_type" : "std",
+          "button_style" : "hs-arrow-btn",
+          "button_text" : "Learn More",
+          "link" : {
+            "url" : {
+              "content_id" : null,
+              "type" : "EXTERNAL",
+              "href" : ""
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          }
+        }
+      },
+      "menu_group" : [ {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ],
+      "hubdb_group" : { }
+    }, {
+      "top_title" : "OVERVIEW",
+      "select_menu_type" : "card",
+      "card_group" : {
+        "select_icon_type" : "img",
+        "image" : {
+          "size_type" : "auto",
+          "src" : "https://453356.fs1.hubspotusercontent-na1.net/hubfs/453356/Homesteaders-u4m/Images/hand%20with%20tree.png",
+          "alt" : "hand with tree",
+          "loading" : "lazy",
+          "width" : 61,
+          "height" : 62,
+          "max_width" : 61,
+          "max_height" : 62
+        },
+        "icon" : { },
+        "title" : "Title",
+        "description" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent lib ero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum.</p>",
+        "include_button" : true,
+        "button_group" : {
+          "button_type" : "std",
+          "button_style" : "hs-arrow-btn",
+          "button_text" : "Learn More",
+          "link" : {
+            "url" : {
+              "content_id" : null,
+              "type" : "EXTERNAL",
+              "href" : ""
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          }
+        }
+      },
+      "menu_group" : [ {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ],
+      "hubdb_group" : { }
+    } ]
   } ],
   "tab" : "CONTENT",
   "expanded" : false,
   "group_occurrence_meta" : null,
   "type" : "group",
   "display_width" : null,
-  "default" : [ ]
+  "default" : [ {
+    "menu" : "Sample Menu",
+    "include_link" : true,
+    "link" : {
+      "url" : {
+        "content_id" : null,
+        "type" : "EXTERNAL",
+        "href" : ""
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    },
+    "include_child_menu" : true,
+    "child_menu_group" : [ {
+      "top_title" : "OVERVIEW",
+      "select_menu_type" : "card",
+      "card_group" : {
+        "select_icon_type" : "img",
+        "image" : {
+          "size_type" : "auto",
+          "src" : "https://453356.fs1.hubspotusercontent-na1.net/hubfs/453356/Homesteaders-u4m/Images/hand%20with%20tree.png",
+          "alt" : "hand with tree",
+          "loading" : "lazy",
+          "width" : 61,
+          "height" : 62,
+          "max_width" : 61,
+          "max_height" : 62
+        },
+        "icon" : { },
+        "title" : "Title",
+        "description" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent lib ero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum.</p>",
+        "include_button" : true,
+        "button_group" : {
+          "button_type" : "std",
+          "button_style" : "hs-arrow-btn",
+          "button_text" : "Learn More",
+          "link" : {
+            "url" : {
+              "content_id" : null,
+              "type" : "EXTERNAL",
+              "href" : ""
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          }
+        }
+      },
+      "menu_group" : [ {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ],
+      "hubdb_group" : { }
+    }, {
+      "top_title" : "OVERVIEW",
+      "select_menu_type" : "card",
+      "card_group" : {
+        "select_icon_type" : "img",
+        "image" : {
+          "size_type" : "auto",
+          "src" : "https://453356.fs1.hubspotusercontent-na1.net/hubfs/453356/Homesteaders-u4m/Images/hand%20with%20tree.png",
+          "alt" : "hand with tree",
+          "loading" : "lazy",
+          "width" : 61,
+          "height" : 62,
+          "max_width" : 61,
+          "max_height" : 62
+        },
+        "icon" : { },
+        "title" : "Title",
+        "description" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent lib ero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum.</p>",
+        "include_button" : true,
+        "button_group" : {
+          "button_type" : "std",
+          "button_style" : "hs-arrow-btn",
+          "button_text" : "Learn More",
+          "link" : {
+            "url" : {
+              "content_id" : null,
+              "type" : "EXTERNAL",
+              "href" : ""
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          }
+        }
+      },
+      "menu_group" : [ {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ],
+      "hubdb_group" : { }
+    }, {
+      "top_title" : "OVERVIEW",
+      "select_menu_type" : "card",
+      "card_group" : {
+        "select_icon_type" : "img",
+        "image" : {
+          "size_type" : "auto",
+          "src" : "https://453356.fs1.hubspotusercontent-na1.net/hubfs/453356/Homesteaders-u4m/Images/hand%20with%20tree.png",
+          "alt" : "hand with tree",
+          "loading" : "lazy",
+          "width" : 61,
+          "height" : 62,
+          "max_width" : 61,
+          "max_height" : 62
+        },
+        "icon" : { },
+        "title" : "Title",
+        "description" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent lib ero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum.</p>",
+        "include_button" : true,
+        "button_group" : {
+          "button_type" : "std",
+          "button_style" : "hs-arrow-btn",
+          "button_text" : "Learn More",
+          "link" : {
+            "url" : {
+              "content_id" : null,
+              "type" : "EXTERNAL",
+              "href" : ""
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          }
+        }
+      },
+      "menu_group" : [ {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ],
+      "hubdb_group" : { }
+    } ]
+  }, {
+    "menu" : "Sample Menu",
+    "include_link" : true,
+    "link" : {
+      "url" : {
+        "content_id" : null,
+        "type" : "EXTERNAL",
+        "href" : ""
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    },
+    "include_child_menu" : true,
+    "child_menu_group" : [ {
+      "top_title" : "OVERVIEW",
+      "select_menu_type" : "card",
+      "card_group" : {
+        "select_icon_type" : "img",
+        "image" : {
+          "size_type" : "auto",
+          "src" : "https://453356.fs1.hubspotusercontent-na1.net/hubfs/453356/Homesteaders-u4m/Images/hand%20with%20tree.png",
+          "alt" : "hand with tree",
+          "loading" : "lazy",
+          "width" : 61,
+          "height" : 62,
+          "max_width" : 61,
+          "max_height" : 62
+        },
+        "icon" : { },
+        "title" : "Title",
+        "description" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent lib ero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum.</p>",
+        "include_button" : true,
+        "button_group" : {
+          "button_type" : "std",
+          "button_style" : "hs-arrow-btn",
+          "button_text" : "Learn More",
+          "link" : {
+            "url" : {
+              "content_id" : null,
+              "type" : "EXTERNAL",
+              "href" : ""
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          }
+        }
+      },
+      "menu_group" : [ {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ],
+      "hubdb_group" : { }
+    }, {
+      "top_title" : "OVERVIEW",
+      "select_menu_type" : "card",
+      "card_group" : {
+        "select_icon_type" : "img",
+        "image" : {
+          "size_type" : "auto",
+          "src" : "https://453356.fs1.hubspotusercontent-na1.net/hubfs/453356/Homesteaders-u4m/Images/hand%20with%20tree.png",
+          "alt" : "hand with tree",
+          "loading" : "lazy",
+          "width" : 61,
+          "height" : 62,
+          "max_width" : 61,
+          "max_height" : 62
+        },
+        "icon" : { },
+        "title" : "Title",
+        "description" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent lib ero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum.</p>",
+        "include_button" : true,
+        "button_group" : {
+          "button_type" : "std",
+          "button_style" : "hs-arrow-btn",
+          "button_text" : "Learn More",
+          "link" : {
+            "url" : {
+              "content_id" : null,
+              "type" : "EXTERNAL",
+              "href" : ""
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          }
+        }
+      },
+      "menu_group" : [ {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ],
+      "hubdb_group" : { }
+    }, {
+      "top_title" : "OVERVIEW",
+      "select_menu_type" : "card",
+      "card_group" : {
+        "select_icon_type" : "img",
+        "image" : {
+          "size_type" : "auto",
+          "src" : "https://453356.fs1.hubspotusercontent-na1.net/hubfs/453356/Homesteaders-u4m/Images/hand%20with%20tree.png",
+          "alt" : "hand with tree",
+          "loading" : "lazy",
+          "width" : 61,
+          "height" : 62,
+          "max_width" : 61,
+          "max_height" : 62
+        },
+        "icon" : { },
+        "title" : "Title",
+        "description" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent lib ero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum.</p>",
+        "include_button" : true,
+        "button_group" : {
+          "button_type" : "std",
+          "button_style" : "hs-arrow-btn",
+          "button_text" : "Learn More",
+          "link" : {
+            "url" : {
+              "content_id" : null,
+              "type" : "EXTERNAL",
+              "href" : ""
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          }
+        }
+      },
+      "menu_group" : [ {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ],
+      "hubdb_group" : { }
+    } ]
+  }, {
+    "menu" : "Sample Menu",
+    "include_link" : true,
+    "link" : {
+      "url" : {
+        "content_id" : null,
+        "type" : "EXTERNAL",
+        "href" : ""
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    },
+    "include_child_menu" : true,
+    "child_menu_group" : [ {
+      "top_title" : "OVERVIEW",
+      "select_menu_type" : "card",
+      "card_group" : {
+        "select_icon_type" : "img",
+        "image" : {
+          "size_type" : "auto",
+          "src" : "https://453356.fs1.hubspotusercontent-na1.net/hubfs/453356/Homesteaders-u4m/Images/hand%20with%20tree.png",
+          "alt" : "hand with tree",
+          "loading" : "lazy",
+          "width" : 61,
+          "height" : 62,
+          "max_width" : 61,
+          "max_height" : 62
+        },
+        "icon" : { },
+        "title" : "Title",
+        "description" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent lib ero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum.</p>",
+        "include_button" : true,
+        "button_group" : {
+          "button_type" : "std",
+          "button_style" : "hs-arrow-btn",
+          "button_text" : "Learn More",
+          "link" : {
+            "url" : {
+              "content_id" : null,
+              "type" : "EXTERNAL",
+              "href" : ""
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          }
+        }
+      },
+      "menu_group" : [ {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ],
+      "hubdb_group" : { }
+    }, {
+      "top_title" : "OVERVIEW",
+      "select_menu_type" : "card",
+      "card_group" : {
+        "select_icon_type" : "img",
+        "image" : {
+          "size_type" : "auto",
+          "src" : "https://453356.fs1.hubspotusercontent-na1.net/hubfs/453356/Homesteaders-u4m/Images/hand%20with%20tree.png",
+          "alt" : "hand with tree",
+          "loading" : "lazy",
+          "width" : 61,
+          "height" : 62,
+          "max_width" : 61,
+          "max_height" : 62
+        },
+        "icon" : { },
+        "title" : "Title",
+        "description" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent lib ero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum.</p>",
+        "include_button" : true,
+        "button_group" : {
+          "button_type" : "std",
+          "button_style" : "hs-arrow-btn",
+          "button_text" : "Learn More",
+          "link" : {
+            "url" : {
+              "content_id" : null,
+              "type" : "EXTERNAL",
+              "href" : ""
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          }
+        }
+      },
+      "menu_group" : [ {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ],
+      "hubdb_group" : { }
+    }, {
+      "top_title" : "OVERVIEW",
+      "select_menu_type" : "card",
+      "card_group" : {
+        "select_icon_type" : "img",
+        "image" : {
+          "size_type" : "auto",
+          "src" : "https://453356.fs1.hubspotusercontent-na1.net/hubfs/453356/Homesteaders-u4m/Images/hand%20with%20tree.png",
+          "alt" : "hand with tree",
+          "loading" : "lazy",
+          "width" : 61,
+          "height" : 62,
+          "max_width" : 61,
+          "max_height" : 62
+        },
+        "icon" : { },
+        "title" : "Title",
+        "description" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent lib ero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum.</p>",
+        "include_button" : true,
+        "button_group" : {
+          "button_type" : "std",
+          "button_style" : "hs-arrow-btn",
+          "button_text" : "Learn More",
+          "link" : {
+            "url" : {
+              "content_id" : null,
+              "type" : "EXTERNAL",
+              "href" : ""
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          }
+        }
+      },
+      "menu_group" : [ {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ],
+      "hubdb_group" : { }
+    } ]
+  }, {
+    "menu" : "Sample Menu",
+    "include_link" : true,
+    "link" : {
+      "url" : {
+        "content_id" : null,
+        "type" : "EXTERNAL",
+        "href" : ""
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    },
+    "include_child_menu" : true,
+    "child_menu_group" : [ {
+      "top_title" : "OVERVIEW",
+      "select_menu_type" : "card",
+      "card_group" : {
+        "select_icon_type" : "img",
+        "image" : {
+          "size_type" : "auto",
+          "src" : "https://453356.fs1.hubspotusercontent-na1.net/hubfs/453356/Homesteaders-u4m/Images/hand%20with%20tree.png",
+          "alt" : "hand with tree",
+          "loading" : "lazy",
+          "width" : 61,
+          "height" : 62,
+          "max_width" : 61,
+          "max_height" : 62
+        },
+        "icon" : { },
+        "title" : "Title",
+        "description" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent lib ero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum.</p>",
+        "include_button" : true,
+        "button_group" : {
+          "button_type" : "std",
+          "button_style" : "hs-arrow-btn",
+          "button_text" : "Learn More",
+          "link" : {
+            "url" : {
+              "content_id" : null,
+              "type" : "EXTERNAL",
+              "href" : ""
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          }
+        }
+      },
+      "menu_group" : [ {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ],
+      "hubdb_group" : { }
+    }, {
+      "top_title" : "OVERVIEW",
+      "select_menu_type" : "card",
+      "card_group" : {
+        "select_icon_type" : "img",
+        "image" : {
+          "size_type" : "auto",
+          "src" : "https://453356.fs1.hubspotusercontent-na1.net/hubfs/453356/Homesteaders-u4m/Images/hand%20with%20tree.png",
+          "alt" : "hand with tree",
+          "loading" : "lazy",
+          "width" : 61,
+          "height" : 62,
+          "max_width" : 61,
+          "max_height" : 62
+        },
+        "icon" : { },
+        "title" : "Title",
+        "description" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent lib ero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum.</p>",
+        "include_button" : true,
+        "button_group" : {
+          "button_type" : "std",
+          "button_style" : "hs-arrow-btn",
+          "button_text" : "Learn More",
+          "link" : {
+            "url" : {
+              "content_id" : null,
+              "type" : "EXTERNAL",
+              "href" : ""
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          }
+        }
+      },
+      "menu_group" : [ {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ],
+      "hubdb_group" : { }
+    }, {
+      "top_title" : "OVERVIEW",
+      "select_menu_type" : "card",
+      "card_group" : {
+        "select_icon_type" : "img",
+        "image" : {
+          "size_type" : "auto",
+          "src" : "https://453356.fs1.hubspotusercontent-na1.net/hubfs/453356/Homesteaders-u4m/Images/hand%20with%20tree.png",
+          "alt" : "hand with tree",
+          "loading" : "lazy",
+          "width" : 61,
+          "height" : 62,
+          "max_width" : 61,
+          "max_height" : 62
+        },
+        "icon" : { },
+        "title" : "Title",
+        "description" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent lib ero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum.</p>",
+        "include_button" : true,
+        "button_group" : {
+          "button_type" : "std",
+          "button_style" : "hs-arrow-btn",
+          "button_text" : "Learn More",
+          "link" : {
+            "url" : {
+              "content_id" : null,
+              "type" : "EXTERNAL",
+              "href" : ""
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          }
+        }
+      },
+      "menu_group" : [ {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ],
+      "hubdb_group" : { }
+    } ]
+  }, {
+    "menu" : "Sample Menu",
+    "include_link" : true,
+    "link" : {
+      "url" : {
+        "content_id" : null,
+        "type" : "EXTERNAL",
+        "href" : ""
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    },
+    "include_child_menu" : true,
+    "child_menu_group" : [ {
+      "top_title" : "OVERVIEW",
+      "select_menu_type" : "card",
+      "card_group" : {
+        "select_icon_type" : "img",
+        "image" : {
+          "size_type" : "auto",
+          "src" : "https://453356.fs1.hubspotusercontent-na1.net/hubfs/453356/Homesteaders-u4m/Images/hand%20with%20tree.png",
+          "alt" : "hand with tree",
+          "loading" : "lazy",
+          "width" : 61,
+          "height" : 62,
+          "max_width" : 61,
+          "max_height" : 62
+        },
+        "icon" : { },
+        "title" : "Title",
+        "description" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent lib ero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum.</p>",
+        "include_button" : true,
+        "button_group" : {
+          "button_type" : "std",
+          "button_style" : "hs-arrow-btn",
+          "button_text" : "Learn More",
+          "link" : {
+            "url" : {
+              "content_id" : null,
+              "type" : "EXTERNAL",
+              "href" : ""
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          }
+        }
+      },
+      "menu_group" : [ {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ],
+      "hubdb_group" : { }
+    }, {
+      "top_title" : "OVERVIEW",
+      "select_menu_type" : "card",
+      "card_group" : {
+        "select_icon_type" : "img",
+        "image" : {
+          "size_type" : "auto",
+          "src" : "https://453356.fs1.hubspotusercontent-na1.net/hubfs/453356/Homesteaders-u4m/Images/hand%20with%20tree.png",
+          "alt" : "hand with tree",
+          "loading" : "lazy",
+          "width" : 61,
+          "height" : 62,
+          "max_width" : 61,
+          "max_height" : 62
+        },
+        "icon" : { },
+        "title" : "Title",
+        "description" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent lib ero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum.</p>",
+        "include_button" : true,
+        "button_group" : {
+          "button_type" : "std",
+          "button_style" : "hs-arrow-btn",
+          "button_text" : "Learn More",
+          "link" : {
+            "url" : {
+              "content_id" : null,
+              "type" : "EXTERNAL",
+              "href" : ""
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          }
+        }
+      },
+      "menu_group" : [ {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ],
+      "hubdb_group" : { }
+    }, {
+      "top_title" : "OVERVIEW",
+      "select_menu_type" : "card",
+      "card_group" : {
+        "select_icon_type" : "img",
+        "image" : {
+          "size_type" : "auto",
+          "src" : "https://453356.fs1.hubspotusercontent-na1.net/hubfs/453356/Homesteaders-u4m/Images/hand%20with%20tree.png",
+          "alt" : "hand with tree",
+          "loading" : "lazy",
+          "width" : 61,
+          "height" : 62,
+          "max_width" : 61,
+          "max_height" : 62
+        },
+        "icon" : { },
+        "title" : "Title",
+        "description" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent lib ero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum.</p>",
+        "include_button" : true,
+        "button_group" : {
+          "button_type" : "std",
+          "button_style" : "hs-arrow-btn",
+          "button_text" : "Learn More",
+          "link" : {
+            "url" : {
+              "content_id" : null,
+              "type" : "EXTERNAL",
+              "href" : ""
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          }
+        }
+      },
+      "menu_group" : [ {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "title" : "Title",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "include_link" : true,
+        "link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ],
+      "hubdb_group" : { }
+    } ]
+  } ]
+}, {
+  "id" : "3628b42b-bfb2-622d-475d-3afe74138bb3",
+  "name" : "include_button",
+  "label" : "Include Button",
+  "required" : false,
+  "locked" : false,
+  "display" : "checkbox",
+  "type" : "boolean",
+  "display_width" : null,
+  "default" : true
+}, {
+  "id" : "27910b58-bd80-e5c9-e0fb-1159fa11931f",
+  "name" : "button_group",
+  "label" : "Button Group",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : null,
+    "controlling_field_path" : "include_button",
+    "controlling_value_regex" : "true",
+    "property" : null,
+    "operator" : "EQUAL",
+    "access" : null
+  },
+  "children" : [ {
+    "id" : "ec9a46a3-e551-6246-6b14-e28f1848510d",
+    "name" : "button_type",
+    "label" : "Button Type",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "std", "Standard" ], [ "cta", "Call to Action" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "std"
+  }, {
+    "id" : "d9db2ec8-91df-05a9-ae03-ec4a0fd4aca6",
+    "name" : "button_style",
+    "label" : "Button Style",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "button_group.button_type",
+      "controlling_value_regex" : "std",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "hs-button", "Primary" ], [ "hs-sec-btn", "Secondary" ], [ "hs-arrow-btn", "Simple Button" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "hs-button"
+  }, {
+    "id" : "3e25120b-e6fa-5106-4e4f-3dba558aa569",
+    "name" : "button_text",
+    "label" : "Button Text",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "button_group.button_type",
+      "controlling_value_regex" : "std",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Get in Touch "
+  }, {
+    "id" : "78440c3c-f002-a377-913d-bedfde1965f6",
+    "name" : "link",
+    "label" : "Link",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "button_group.button_type",
+      "controlling_value_regex" : "std",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG", "CALL_TO_ACTION", "PHONE_NUMBER", "WHATSAPP_NUMBER", "PAYMENT" ],
+    "show_advanced_rel_options" : false,
+    "type" : "link",
+    "display_width" : null,
+    "default" : {
+      "url" : {
+        "content_id" : null,
+        "type" : "EXTERNAL",
+        "href" : ""
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  }, {
+    "id" : "7f5f13fa-99a8-6f28-5137-c0f6fa1c92ba",
+    "name" : "cta",
+    "label" : "CTA",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "button_group.button_type",
+      "controlling_value_regex" : "cta",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "type" : "cta",
+    "display_width" : null
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "button_type" : "std",
+    "button_style" : "hs-button",
+    "button_text" : "Get in Touch ",
+    "link" : {
+      "url" : {
+        "content_id" : null,
+        "type" : "EXTERNAL",
+        "href" : ""
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  }
 } ]

@@ -1,158 +1,162 @@
+{% import "../../macros/_macros.html" as macros %}
+{% if is_in_previewer %}
+{{ require_css (get_asset_url('../../css/styles.css')) }}
+{% endif %}
+
 <div class="cmMegaMenu">
-	<div class="topMenu">
-		<div class="cmInnerWrap">
-			<ul class="mainNav">
-				{% for item in module.menu_group %}
-				{% set mainMenuLoop = loop.index %}
-				{% if item.text %}
-				<li class="items item_{{mainMenuLoop}}">
-					{% if item.include_link %}
-					{% set href = item.link.url.href %}
-					{% if item.link.url.type is equalto "EMAIL_ADDRESS" %}
-					{% set href = "mailto:" + href %}
-					{% endif %}
-					<a
-						 {% if item.link.url.type is equalto "CALL_TO_ACTION"  %}
-						 href="{{ href }}"
-						 {% else %}
-						 href="{{ href|escape_url }}"
-						 {% endif %}
-						 {% if item.link.open_in_new_tab %}
-						 target="_blank"
-						 {% endif %}
-						 {% if item.link.rel %}
-						 rel="{{ item.link.rel|escape_attr }}"
-						 {% endif %}
-						 >
-						{% endif %}
-						{{ item.text }}
-						{% if item.include_link %}
-					</a>
-					{% endif %}
-					{% if item.include_child_menu %}
-					<div class="bottomMenu">
-						<div class="bottomInner">
-							<div class="cmLeftCol">
-								<div class="cmLeftInner">
-									{% for item2 in item.child_menu_group.left_column %}
-									{% set childMenuLoop = loop.index %}
-									<div class="cardItem childItem_{{childMenuLoop}}">
-										<div class="cardItemInner">
-											{% if item2.image.src %}
-											<div class="cmImage">
-												<img src="{{ item2.image.src }}" alt="{{ item2.image.alt }}" >
-												<svg class="overlayShape" xmlns="http://www.w3.org/2000/svg" width="194" height="75" viewBox="0 0 194 75" fill="currentColor">
-													<path d="M0 43.0257H77.5026L61.1625 35.3208L47.249 28.6702L31.4751 20.9653H0V43.0257Z" fill="currentColor"/>
-													<path d="M0 10.9896H19.5031L3.89091 2.14926L0 0V10.9896Z" fill="currentColor"/>
-													<path d="M0 74.9999H193.259L161.549 67.295L134.451 60.8878L103.145 53.1829H0V74.9999Z" fill="currentColor"/>
-												</svg>
-											</div>
-											{% endif %}
-											{% if item2.title %}
-											<h4 class="cmTitle">
-												{{ item2.title }}
-											</h4>
-											{% endif %}
-											<div class="btnWrap">
+  <div class="cmInnerWrap">
+    <ul class="mainNav">
+      {% for item in module.menu_group %}
+      {% set mainMenuLoop = loop.index %}
+      {% if item.menu %}
+      <li class="items item_{{mainMenuLoop}} {% if item.include_child_menu %}hasChildMenu{% endif %}">
+        {% if item.include_link %}
+        {% set href = item.link.url.href %}
+        {% if item.link.url.type is equalto "EMAIL_ADDRESS" %}
+        {% set href = "mailto:" + href %}
+        {% endif %}
+        <a
+           {% if item.link.url.type is equalto "CALL_TO_ACTION"  %}
+           href="{{ href }}"
+           {% else %}
+           href="{{ href|escape_url }}"
+           {% endif %}
+           {% if item.link.open_in_new_tab %}
+           target="_blank"
+           {% endif %}
+           {% if item.link.rel %}
+           rel="{{ item.link.rel|escape_attr }}"
+           {% endif %}
+           >
+          {% endif %}
+           <span class="btmBorder">{{ item.menu }}</span>
+          {% if item.include_link %}
+        </a>
+        {% endif %}
+        {% if item.include_child_menu %}
+        <div class="bottomMenu">
+          <div class="bottomInner">
+            {% for item2 in item.child_menu_group %}
+            {% set chilMenuLoop = loop.index %}
+            <div class="items childItem_{{chilMenuLoop}}">
+              <div class="cmColWrap">
+                {% if item2.top_title %}
+                <p class="topTitle">
+                  {{ item2.top_title }}
+                </p>
+                {% endif %}
+                {% if item2.select_menu_type == "card" %}
+                <div class="cmCardsWrap">
+                  <div class="cmMiddleInner">
+                    <div class="cmIconCnt">
+                      {% if item2.card_group.image.src or item2.icon %}
+                      <div class="cmIcon">
+                        {% if item2.card_group.select_icon_type =="img" %}
+                        <img src="{{ item2.card_group.image.src }}" alt="{{ item2.card_group.image.alt }}" >
+                        {% elif item2.card_group.select_icon_type =="icon" %}
+                        {% icon
+                            name="{{ item2.card_group.icon.name }}"
+                            style="{{ item2.card_group.icon.type }}"
+                            unicode="{{ item2.card_group.icon.unicode }}"
+                            icon_set="{{ item2.card_group.icon.icon_set }}"
+                          %}
+                        {% endif %}
+                      </div>
+                      {% endif %}
+                      {% if item2.card_group.title %}
+                      <div class="cmTitleWrap">
+                        <p>
+                          {{ item2.card_group.title }}
+                        </p>
+                      </div>
+                      {% endif %}
+                    </div>
+                    {% if item2.card_group.description %}
+                    <div class="cmDescwrap">
+                      {{ item2.card_group.description }}
+                    </div>
+                    {% endif %}
+                    {% if item2.card_group.include_button %}
+                    {{ macros.singlebuttonGroup(item2.card_group.button_group) }} 
+                    {% endif %}
+                  </div>
+                </div>
+                {% elif item2.select_menu_type == "menu" %}
+                <div class="cmMenuCol">
+                  {% for item3 in item2.menu_group %}
+                  <div class="cmMenuItem">
+                    {% if item3.include_link %}
+                    {% set href = item3.link.url.href %}
+                    {% if item3.link.url.type is equalto "EMAIL_ADDRESS" %}
+                    {% set href = "mailto:" + href %}
+                    {% endif %}
+                    <a class="overLink"
+                       {% if item3.link.url.type is equalto "CALL_TO_ACTION"  %}
+                       href="{{ href }}"
+                       {% else %}
+                       href="{{ href|escape_url }}"
+                       {% endif %}
+                       {% if item3.link.open_in_new_tab %}
+                       target="_blank"
+                       {% endif %}
+                       {% if item3.link.rel %}
+                       rel="{{ item3.link.rel|escape_attr }}"
+                       {% endif %}
+                       >
+                    </a>
+                    {% endif %}
+                    {% if item3.title %}
+                    <p class="cmMenuTitle">
+                      {{ item3.title }}
+                    </p>
+                    {% endif %}
+                    {% if item3.description %}
+                    <p class="cmMenuDesc">
+                      {{ item3.description }}
+                    </p>
+                    {% endif %}
+                  </div>
+                  {% endfor %}
+                </div>
+                {% elif item2.select_menu_type == "hubdb" %}
+                <div class="cmHubdbCol">
+                  <div class="cmRightInner">
+                    <div class="cmIconCnt">
+                      <div class="cmIcon">
+                        <img src="{{ item2.card_group.image.src }}" alt="{{ item2.card_group.image.alt }}" >
+                      </div>
+                      <div class="cmTitleWrap">
+                        <p class="cmTitle">
+                          Title of Featured Resource Goes In This Area
+                        </p>
+                        <p class="cmDesc">
+                          Lorem ipsum dolor sit amet co nsectetur adipiscing dolor sit amet co nsectetur adipiscing.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% elif item2.select_menu_type == "blog" %}
+                <div class="cmBlogCol">
+                  <div class="cmRightInner">
 
-											</div>
-										</div>
-									</div>
-									{% endfor %}
-								</div>
-							</div>
-							<div class="cmMiddleCol">
-								<div class="cmMiddleInner">
-									{% for item2 in item.child_menu_group.middle_column %}
-									{% set childMenuLoop = loop.index %}
-									<div class="cmMenuItem cmMenuItem_{{childMenuLoop}}">
-										<div class="cmMenuItemInner">
-											{% if item2.title or item2.description %}
-											{% if item2.include_link %}
-											{% set href = item2.link.url.href %}
-											{% if item2.link.url.type is equalto "EMAIL_ADDRESS" %}
-											{% set href = "mailto:" + href %}
-											{% endif %}
-											<a class="overLink"
-												 {% if item2.link.url.type is equalto "CALL_TO_ACTION"  %}
-												 href="{{ href }}"
-												 {% else %}
-												 href="{{ href|escape_url }}"
-												 {% endif %}
-												 {% if item2.link.open_in_new_tab %}
-												 target="_blank"
-												 {% endif %}
-												 {% if item2.link.rel %}
-												 rel="{{ item2.link.rel|escape_attr }}"
-												 {% endif %}
-												 >
-											</a>
-											{% endif %}
-											{% endif %}
-											{% if item2.title %}
-											<h5 class="cmTitle">
-												{{ item2.title }}
-											</h5>
-											{% endif %}
-											{% if item2.description %}
-											<p class="cmDescription">
-												{{ item2.description }}
-											</p>
-											{% endif %}
-										</div>
-									</div>
-									{% endfor %}
-								</div>
-							</div>
-							<div class="cmRightCol">
-								<div class="cmRightInner">
-									{% for item2 in item.child_menu_group.right_column %}
-									{% set childMenuLoop = loop.index %}
-									<div class="rightItems rightItem_{{childMenuLoop}}">
-										<div class="rightItemInner">
-											{% if item2.include_image %}
-											{% if item2.image_field.src %}
-											<div class="cmImageWrap">
-												<img src="{{ item2.image_field.src }}" alt="{{ item2.image_field.alt }}">
-											</div>
-											{% endif %}
-											{% endif %}
-											{% if item2.title %}
-											<h4 class="cmTitle">{{ item2.title }}</h4>
-											{% endif %}
-											<div class="btnWrap"></div>
-										</div>
-									</div>
-									{% endfor %}
-								</div>
-							</div>
-						</div>
-					</div>
-					{% endif %}
-				</li>
-				{% endif %}
-				{% endfor %}
-			</ul>
-		</div>
-	</div>
+                  </div>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+      </li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+    <div class="btnWrapper">
+      {% if module.include_button %}
+      {{ macros.singlebuttonGroup(module.button_group) }} 
+      {% endif %}
+    </div>
+  </div>
 </div>
-
-
-{% require_css %}
-<style>
-	{% for item in module.menu_group %}
-	{% set mainMenuLoop = loop.index %}
-	{% for item2 in item.child_menu_group.right_column %}
-	{% set childMenuLoop = loop.index %}
-	.cmMegaMenu .items.item_{{mainMenuLoop}} .rightItems.rightItem_{{childMenuLoop}} .rightItemInner{
-		background-color:{{ item2.card_settings.background_color.rgba }};
-	}
-	.cmMegaMenu .items.item_{{mainMenuLoop}} .rightItems.rightItem_{{childMenuLoop}} .rightItemInner .cmTitle{
-		color:{{ item2.card_settings.title_color.rgba }};
-	}
-	{% endfor %}
-	{% endfor %}
-</style>
-{% end_require_css %}
-
-
