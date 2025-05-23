@@ -598,6 +598,12 @@ section[class*="u4m-"] {
   .arrow-link:not(:hover) {
     color: $white;
   }
+  .hs-arrow-btn {
+    color: inherit;
+    &:hover {
+      color: inherit;
+    }
+  }
 }
 
 .hs-button {
@@ -728,4 +734,58 @@ section[class*="u4m-"] {
 
 .White {
   color: $white;
+}
+
+ul li::marker {
+  color: $action1;
+}
+.checkmarks {
+  list-style: none;
+}
+
+.checkmarks li {
+  position: relative;
+  padding-left: 28px;
+}
+
+.checkmarks li:before {
+  background-color: $white;
+  border-radius: 50%;
+  content: "";
+  display: block;
+  height: 26px;
+  left: -26px;
+  position: absolute;
+  width: 26px;
+  background-image: url('{{get_asset_url("./../templates/images/check.png")}}');
+  background-position: center center;
+  background-size: cover;
+}
+
+// .shape {
+//   border-bottom-left-radius: 100% 70px;
+//   border-bottom-right-radius: 100% 70px;
+//   border-top-left-radius: 100% 70px;
+//   border-top-right-radius: 100% 70px;
+// }
+.shapeMain {
+  border-top-left-radius: 100% 80px;
+  border-top-right-radius: 100% 80px;
+  width: calc(100% + 100px);
+  left: -50px;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: -50px;
+  height: 100%;
+  border-bottom-left-radius: 100% 80px;
+  border-bottom-right-radius: 100% 80px;
+  overflow: hidden;
+}
+.shapeMain + .page-center {
+  position: relative;
+  z-index: 2;
+}
+.page-center.full_width {
+  padding: 0 !important;
 }
