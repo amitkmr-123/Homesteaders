@@ -789,3 +789,11 @@ ul li::marker {
 .page-center.full_width {
   padding: 0 !important;
 }
+.card_radius {
+  overflow: hidden;
+  border-radius: 50px 0 50px 0;
+}
+
+.eyebrow {
+  @include eyebrow;
+}

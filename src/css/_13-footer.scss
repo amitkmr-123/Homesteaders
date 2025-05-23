@@ -1,0 +1,139 @@
+footer.footer {
+  .footerContainer {
+    .innerFooter {
+      .ftrTopInner {
+        h5 {
+          @include size22;
+          font-style: normal;
+          font-weight: 500;
+          letter-spacing: 0.02em;
+          line-height: 1.5;
+          position: relative;
+          text-decoration: underline;
+          text-underline-offset: 5rem;
+          text-decoration-color: $Gold;
+          transition: 0.1s ease-in;
+          &:hover {
+            text-decoration-color: $lighttan;
+          }
+        }
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10rem;
+        @include tabletMid {
+          gap: 30rem;
+          justify-self: flex-start;
+        }
+        .TopMidCol {
+          border-left: 1rem solid $lighttan;
+          border-right: 1rem solid $lighttan;
+          padding-left: 50rem;
+          padding-right: 49rem;
+          width: 40.8%;
+          @include tabletMid {
+            width: calc(50% - 20rem);
+            border-right: 0;
+            padding-right: 0;
+          }
+          @include tabletvert {
+            width: 100%;
+            border-left: 0;
+            padding: 0;
+          }
+        }
+        .TopleftCol {
+          width: 22.4%;
+          @include tabletMid {
+            width: calc(50% - 20rem);
+          }
+          @include tabletvert {
+            width: 100%;
+          }
+        }
+        p {
+          a {
+            color: inherit;
+            text-decoration: underline;
+          }
+          margin-top: 0;
+          &:not(:last-child) {
+            margin-bottom: 38rem;
+            @include tabletvert {
+              margin-bottom: 20rem;
+            }
+          }
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+      .ftrBtm {
+        padding-top: 72rem;
+        text-align: center;
+        .ftrLogo {
+          margin-bottom: 18rem;
+        }
+        .btmContent {
+          width: 445rem;
+          margin: 0 auto;
+        }
+        .ftrSocial {
+          display: flex;
+          justify-content: center;
+          .socialWrp {
+            margin: 0;
+          }
+          svg {
+            fill: $lighttan;
+          }
+        }
+        .ftrBtmInner {
+          .ftrCopyright {
+            text-align: center;
+            margin-top: 22rem;
+            p {
+              margin: 0;
+              a {
+                &:first-child {
+                  &::before {
+                    height: 1rem;
+                    content: "";
+                    width: 1rem;
+                    display: inline-block;
+                    background: $lighttan;
+                    margin-left: 10rem;
+                    margin-right: 10rem;
+                    height: 15rem;
+                    vertical-align: middle;
+                  }
+                  &::after {
+                    height: 1rem;
+                    content: "";
+                    width: 1rem;
+                    display: inline-block;
+                    background: $lighttan;
+                    margin-left: 10rem;
+                    margin-right: 10rem;
+                    height: 15rem;
+                    vertical-align: middle;
+                  }
+                }
+                color: inherit;
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+    }
+    background: $black;
+    color: $lighttan;
+    padding-top: 147rem;
+    padding-bottom: 102rem;
+    @include tabletMid {
+      padding-top: 100rem;
+      padding-bottom: 100rem;
+    }
+  }
+}
